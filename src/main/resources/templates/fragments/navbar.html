@@ -1,0 +1,102 @@
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://thymeleaf.org"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        
+    </head>
+    <body>
+        <header th:fragment="navbar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <!-- Título ou Logo da Aplicação -->
+                    <a class="navbar-brand" href="#" th:href="@{/}">Simple Finances</a>
+                    
+                    <!-- Botão para Colapsar a Navbar em Telas Pequenas -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <!-- Links da Navbar -->
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/}">Dashboard</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/contas}">Contas do mês</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/users}">Lista de Usuário</a>
+                            </li>
+
+                        </ul>
+
+                            
+                                <form method="get" th:action="@{/contas/find/ano/mes}" class="d-flex">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <select
+                                            id="mes"
+                                            th:name="mes"
+                                            th:value="${mes}"
+                                            class="form-control"
+                                            required >
+                                            
+                                            <option th:value="1">Janeiro</option>
+                                            <option th:value="2">Fevereiro</option>
+                                            <option th:value="3">Março</option>
+                                            <option th:value="4">Abril</option>
+                                            <option th:value="5">Maio</option>
+                                            <option th:value="6">Junho</option>
+                                            <option th:value="7">Julho</option>
+                                            <option th:value="8">Agosto</option>
+                                            <option th:value="9">Setembro</option>
+                                            <option th:value="10">Outubro</option>
+                                            <option th:value="11">Novembro</option>
+                                            <option th:value="12">Dezembro</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="col">
+                                        <select 
+                                        type="number"
+                                        id="ano"
+                                        th:name="ano"
+                                        th:value="${ano}"
+                                        class="form-control"
+                                        required >
+                                        
+                                        <option th:value="2024">2024</option>
+                                        <option th:value="2025">2025</option>
+                                        
+                                    </select>
+                                </div>
+                                
+                                
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">Ver</button>
+                                </div>
+                            </div>
+                        </form>
+                
+                <!-- Saudação e Botão de Logout -->
+                <!-- <span class="navbar-text me-3">
+                    Bem-vindo(a), <strong th:text="${user}">Usuário</strong>
+                </span>
+                <a class="btn btn-outline-secondary" th:href="@{/logout}">Sair</a> -->
+            </div>
+        </div>
+    </nav>
+</header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    </body>
+</html>

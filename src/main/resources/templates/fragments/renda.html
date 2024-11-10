@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+<header th:fragment="renda"></header>
+
+
+
+<div class="container mt-5">
+  <h6 class="text-center mb-4" >Rendas do mês atual</h6>
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center flex">
+        <div class="align-content-center">
+          <h5 class="mb-0">Inserir renda</h5>
+        </div>
+        <form method="post" action="/renda/insere" th:object="${rendaDTO}">
+          <div class="row">
+
+
+
+          <div class="col-auto">
+            <label for="descricao" class="form-label">Descrição</label>
+            <input type="text" id="descricao" name="descricao" th:value="${renda?.descricao}" class="form-control" required/>
+          </div>
+          <div class="col-auto">
+            <label for="valor" class="form-label">Valor</label>
+            <input type="text" id="valor" name="valor" th:value="${renda?.valor}" class="form-control" required/>
+          </div>
+          <div class="col-auto">
+            <label for="mes" class="form-label">Mês</label>
+            <select id="mes" name="mes" th:value="${renda?.mes}" class="form-select" required>
+              <option th:value="1">Janeiro</option>
+              <option th:value="2">Fevereiro</option>
+              <option th:value="3">Março</option>
+              <option th:value="4">Abril</option>
+              <option th:value="5">Maio</option>
+              <option th:value="6">Junho</option>
+              <option th:value="7">Julho</option>
+              <option th:value="8">Agosto</option>
+              <option th:value="9">Setembro</option>
+              <option th:value="10">Outubro</option>
+              <option th:value="11">Novembro</option>
+              <option th:value="12">Dezembro</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <label for="ano" class="form-label">Ano</label>
+            <select id="ano" name="ano" th:value="${renda?.ano}" class="form-select" required>
+              <option th:value="2024">2024</option>
+              <option th:value="2025">2025</option>
+            </select>
+          </div>
+          <div class="col-auto align-content-end">
+            <button type="submit" class="btn btn-primary">Adcionar</button>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Descrição</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Mês</th>
+            <th scope="col">Ano</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Excluir</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="rendas : ${listarendas}">
+            <td th:text="${rendas.descricao}"></td>
+            <td th:text="${rendas.valor}"></td>
+            <td th:text="${rendas.mes}"></td>
+            <td th:text="${rendas.ano}"></td>
+            <td>
+              <a th:href="@{/contas/altera/id(id=${rendas.id})}"><i class="bi bi-pencil-square" ></i></a>
+            </td>
+            <td>
+              <a th:href="@{/contas/delete/id(id=${rendas.id})}" ><i class="bi bi-trash" style="color:red; decoration:none"></i></a>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th>Total das rendas: </th>
+            <td th:text="${totalrenda}" class="fw-bold"></td>
+            <th>Restante mês: </th>
+            <td th:text="${restantemes}"></td>
+          </tr>
+
+
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alteração</title>
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  />
+</head>
+<body>
+
+  <header th:insert="~{fragments/navbar.html}"> </header>
+
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Alteração da conta</h2>
+  <div class="card mx-auto" style="max-width: 400px">
+    <div class="card-body">
+      <form method="post" action="#" th:action="@{/contas/altera/envia-alteracao/id(id=${conta.id})}" th:object="${contaDTO}">
+        <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" name="id" th:value="${conta?.id}"/>
+
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <input
+                  type="text"
+                  id="descricao"
+                  name="descricao"
+                  th:value="${conta?.descricao}"
+                  class="form-control"
+                  required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="valor" class="form-label">Valor</label>
+          <input
+                  type="text"
+                  id="valor"
+                  name="valor"
+                  th:value="${conta?.valor}"
+                  class="form-control"
+                  required
+          />
+        </div>
+<!-- 
+        <div class="mb-3">
+            <label for="dataalterada" class="form-label">Data de Inserção</label>
+            <input
+                    type="date"
+                    id="dataalterada"
+                    name="dataalterada"
+                    th:value="${conta?.dataalterada}"
+                    class="form-control"
+                    required
+            />
+          </div> -->
+
+          <div class="mb-3">
+            <label for="mes" class="form-label">Mês</label>
+            <select
+                    id="mes"
+                    name="mes"
+                    th:field="${conta.mes}"
+                    class="form-select"
+                    required >
+                  
+                    <option th:value="1">Janeiro</option>
+                    <option th:value="2">Fevereiro</option>
+                    <option th:value="3">Março</option>
+                    <option th:value="4">Abril</option>
+                    <option th:value="5">Maio</option>
+                    <option th:value="6">Junho</option>
+                    <option th:value="7">Julho</option>
+                    <option th:value="8">Agosto</option>
+                    <option th:value="9">Setembro</option>
+                    <option th:value="10">Outubro</option>
+                    <option th:value="11">Novembro</option>
+                    <option th:value="12">Dezembro</option>
+                  </select>
+            
+          </div>
+
+          <div class="mb-3">
+            <label for="ano" class="form-label">Ano</label>
+            <select
+                    id="ano"
+                    name="ano"
+                    th:field="${conta.ano}"
+                    class="form-select"
+                    required>
+
+                  
+                    <option th:value="2024">2024</option>
+                    <option th:value="2025">2025</option>
+                  
+                  </select>
+          </div>
+
+          <div class="mb-3">
+              <label for="pago" class="form-label">Pago</label>
+              <select
+                      class="form-select"
+                      id="pago"
+                      name="pago"
+                      th:field="${conta.pago}"
+              >
+                  <option th:value="false">Não pago</option>
+                  <option th:value="true">Pago</option>
+              </select>
+
+
+          </div>
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-primary">Alterar</button>
+          <a th:href="@{/contas}" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

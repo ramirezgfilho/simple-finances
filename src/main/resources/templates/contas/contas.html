@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contas</title>
+    
+</head>
+<body>
+
+    <header th:insert="~{fragments/navbar.html}"> </header>
+
+<div class="container mt-5">
+    <h5 class="text-center mb-4" >Contas do mês atual</h5>
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Contas do mês atual</h5>
+                <a th:href="@{/contas/cadastro}" class="btn btn-primary">Adicionar Conta</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Mês</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Excluir</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="conta : ${lista}">
+                        <td th:text="${conta.descricao}"></td>
+                        <td th:text="${conta.valor}"></td>
+                        <td th:text="${conta.mes}"></td>
+                        <td th:text="${conta.ano}"></td>
+                        <td th:text="${conta.pago} ? 'Pago' : 'Não pago' "></td>
+
+                        <td>
+                            <a th:href="@{/contas/altera/id(id=${conta.id})}"><i class="bi bi-pencil-square" ></i></a>
+                        </td>
+
+                        <td>
+                            <a th:href="@{/contas/delete/id(id=${conta.id})}" ><i class="bi bi-trash" style="color:red; decoration:none"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total: </th>
+                            <td th:text="${total}" class="fw-bold"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div th:insert="~{fragments/renda.html}"> </div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
