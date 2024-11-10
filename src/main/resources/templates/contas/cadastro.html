@@ -41,12 +41,14 @@
                     <div class="mb-3">
                         <label for="valor" class="form-label">Valor</label>
                         <input
-                                type="text"
+                                type="number"
+                                min="0"
                                 id="valor"
                                 name="valor"
                                 th:value="${conta?.valor}"
                                 class="form-control"
                                 required
+                                step="any"
                         />
                     </div>
                     <!--
@@ -135,6 +137,7 @@
                 <label for="valorcambio" class="form-label">Valor do câmbio atual</label>
                 <input  class="form-control" readonly type="number" id="valorcambio" placeholder="1 CHF = R$6.59" oninput="converterCambio()" th:value="${valorcambio}" />
                 <p><b>Valor convertido: <span id="resultado">0</span> <span> CHF</span></b></p>
+                <button type="button" class="btn btn-primary" onclick="alterarValor()" value="Inserir valor">Altera o valor</button>
 
                 <script>
                     function converterCambio() {
@@ -143,6 +146,12 @@
                         const resultado = valoremreal / valorcambio;
                         document.getElementById("resultado").textContent = resultado.toFixed(2);
                     }
+
+                    function alterarValor() {
+                        const campoNumero = document.getElementById("valor");
+                        campoNumero.value = document.getElementById("resultado").textContent;
+                    }
+
                 </script>
             </div>
         </div>

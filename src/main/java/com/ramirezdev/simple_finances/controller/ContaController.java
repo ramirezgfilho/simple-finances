@@ -73,14 +73,10 @@ public class ContaController {
 
     @GetMapping("/cadastro")
     private String carregaCadastro(Model model) {
-
-        Double valorcambio = 6.59;
-        model.addAttribute("valorcambio" , valorcambio);
-
         var result = apiService.obterDados("https://economia.awesomeapi.com.br/json/last/CHF-BRL");
-
-        System.out.println(result.toString());
-
+        var valorTax = result.substring(85,89);
+        Double valorcambio = Double.valueOf(valorTax);
+        model.addAttribute("valorcambio" , valorcambio);
         return "contas/cadastro";
     }
 
