@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 
@@ -109,16 +108,8 @@ public class ContaController {
 
     @GetMapping("/cambio")
     public String confereCamobio(@RequestParam Double valor){
-
         return "redirect:/contas/cadastro";
 
     }
 
-
 }
-
-//
-//@RequestMapping(value = "/employees", method = RequestMethod.POST)
-//public Employee createEmployee(@RequestBody Employee emp){
-//    return empService.createEmployee(emp);
-//}
