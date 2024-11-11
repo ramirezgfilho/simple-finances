@@ -76,6 +76,8 @@ public class ContaController {
         var result = apiService.obterDados("https://economia.awesomeapi.com.br/json/last/CHF-BRL");
         var valorTax = result.substring(85,89);
         Double valorcambio = Double.valueOf(valorTax);
+        model.addAttribute("mesatual", LocalDate.now().getMonthValue());
+        model.addAttribute("anoatual", LocalDate.now().getYear());
         model.addAttribute("valorcambio" , valorcambio);
         return "contas/cadastro";
     }

@@ -13,150 +13,150 @@
 
 <header th:insert="~{fragments/navbar.html}"> </header>
 
+<div class="container mt-5 col-6">
+    <h5 class="text-center mb-4">Cadastro conta</h5>
+    <div class="card mx-auto" style="max-width: 400px">
+        <div class="card-body">
+            <form method="post" action="/contas/insereConta" th:object="${contaDTO}">
+                <input
+                        type="hidden"
+                        name="_method"
+                        value="put"
+                        th:if="${conta != null}"
+                />
+                <input type="hidden" name="id" th:value="${conta?.id}" />
 
-    <div class="container mt-5 col-6">
-        <h5 class="text-center mb-4">Cadastro conta</h5>
-        <div class="card mx-auto" style="max-width: 400px">
-            <div class="card-body">
-                <form method="post" action="/contas/insereConta" th:object="${contaDTO}">
+                <div class="mb-3">
+                    <label for="descricao" class="form-label">Descrição</label>
                     <input
-                            type="hidden"
-                            name="_method"
-                            value="put"
-                            th:if="${conta != null}"
+                            type="text"
+                            id="descricao"
+                            name="descricao"
+                            th:value="${conta?.descricao}"
+                            class="form-control"
+                            required
                     />
-                    <input type="hidden" name="id" th:value="${conta?.id}" />
+                </div>
+                <div class="mb-3">
+                    <label for="valor" class="form-label">Valor</label>
+                    <input
+                            type="number"
+                            min="0"
+                            id="valor"
+                            name="valor"
+                            th:value="${conta?.valor}"
+                            class="form-control"
+                            required
+                            step="any"
+                    />
+                </div>
+                <!--
+                        <div class="mb-3">
+                            <label for="vencimento" class="form-label">Data de Inserção</label>
+                            <input
+                                    type="date"
+                                    id="vencimento"
+                                    name="vencimento"
+                                    th:value="${conta?.vencimento}"
+                                    class="form-control"
+                                    required
+                            />
+                          </div> -->
 
-                    <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição</label>
-                        <input
-                                type="text"
-                                id="descricao"
-                                name="descricao"
-                                th:value="${conta?.descricao}"
-                                class="form-control"
-                                required
-                        />
-                    </div>
-                    <div class="mb-3">
-                        <label for="valor" class="form-label">Valor</label>
-                        <input
-                                type="number"
-                                min="0"
-                                id="valor"
-                                name="valor"
-                                th:value="${conta?.valor}"
-                                class="form-control"
-                                required
-                                step="any"
-                        />
-                    </div>
-                    <!--
-                            <div class="mb-3">
-                                <label for="vencimento" class="form-label">Data de Inserção</label>
-                                <input
-                                        type="date"
-                                        id="vencimento"
-                                        name="vencimento"
-                                        th:value="${conta?.vencimento}"
-                                        class="form-control"
-                                        required
-                                />
-                              </div> -->
+                <div class="mb-3">
+                    <label for="mes" class="form-label">Mês</label>
+                    <select
+                            id="mes"
+                            name="mes"
+                            th:value="${conta?.mes}"
+                            class="form-select"
+                            required
+                            >
 
-                    <div class="mb-3">
-                        <label for="mes" class="form-label">Mês</label>
-                        <select
-                                id="mes"
-                                name="mes"
-                                th:value="${conta?.mes}"
-                                class="form-select"
-                                required >
+                        <option th:value="1">Janeiro</option>
+                        <option th:value="2">Fevereiro</option>
+                        <option th:value="3">Março</option>
+                        <option th:value="4">Abril</option>
+                        <option th:value="5">Maio</option>
+                        <option th:value="6">Junho</option>
+                        <option th:value="7">Julho</option>
+                        <option th:value="8">Agosto</option>
+                        <option th:value="9">Setembro</option>
+                        <option th:value="10">Outubro</option>
+                        <option th:value="11"   >Novembro</option>
+                        <option th:value="12">Dezembro</option>
+                    </select>
 
-                            <option th:value="1">Janeiro</option>
-                            <option th:value="2">Fevereiro</option>
-                            <option th:value="3">Março</option>
-                            <option th:value="4">Abril</option>
-                            <option th:value="5">Maio</option>
-                            <option th:value="6">Junho</option>
-                            <option th:value="7">Julho</option>
-                            <option th:value="8">Agosto</option>
-                            <option th:value="9">Setembro</option>
-                            <option th:value="10">Outubro</option>
-                            <option th:value="11">Novembro</option>
-                            <option th:value="12">Dezembro</option>
-                        </select>
+                </div>
 
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="ano" class="form-label">Ano</label>
-                        <select
-                                id="ano"
-                                name="ano"
-                                th:value="${conta?.ano}"
-                                class="form-select"
-                                required>
+                <div class="mb-3">
+                    <label for="ano" class="form-label">Ano</label>
+                    <select
+                            id="ano"
+                            name="ano"
+                            th:value="${conta?.ano}"
+                            class="form-select"
+                            required>
 
 
-                            <option th:value="2024">2024</option>
-                            <option th:value="2025">2025</option>
+                        <option th:value="2024" >2024</option>
+                        <option th:value="2025" >2025</option>
 
-                        </select>
-                    </div>
+                    </select>
+                </div>
 
-                    <div class="mb-3" >
-                        <label for="pago" class="form-label">Pago</label>
-                        <select class="form-select"
-                                id="pago"
-                                name="pago"
-                                th:value="${conta?.pago}"
-                                required
-                        >
-                            <option th:value="false">Não pago</option>
-                            <option th:value="true">Pago</option>
-                        </select>
+                <div class="mb-3" >
+                    <label for="pago" class="form-label">Pago</label>
+                    <select class="form-select"
+                            id="pago"
+                            name="pago"
+                            th:value="${conta?.pago}"
+                            required
+                    >
+                        <option th:value="false">Não pago</option>
+                        <option th:value="true">Pago</option>
+                    </select>
 
 
-                    </div>
+                </div>
 
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                        <a th:href="@{/contas}" class="btn btn-secondary">Cancelar</a>
-                    </div>
-                </form>
-            </div>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <a th:href="@{/contas}" class="btn btn-secondary">Cancelar</a>
+                </div>
+            </form>
         </div>
-
-        <h5 class="text-center mb-4">Verificar câmbio</h5>
-        <div class="card mx-auto" style="max-width: 400px">
-            <div class="card-body">
-                <h6>Conversão</h6>
-                <label for="valoremreal" class="form-label">Valor em real</label>
-                <input class="form-control" type="number" id="valoremreal" placeholder="Digite o valor em real para converter" oninput="converterCambio()" />
-                <label for="valorcambio" class="form-label">Valor do câmbio atual</label>
-                <input  class="form-control" readonly type="number" id="valorcambio" placeholder="1 CHF = R$6.59" oninput="converterCambio()" th:value="${valorcambio}" />
-                <p><b>Valor convertido: <span id="resultado">0</span> <span> CHF</span></b></p>
-                <button type="button" class="btn btn-primary" onclick="alterarValor()" value="Inserir valor">Altera o valor</button>
-
-                <script>
-                    function converterCambio() {
-                        const valoremreal = parseFloat(document.getElementById("valoremreal").value) || 0;
-                        const valorcambio = parseFloat(document.getElementById("valorcambio").value) || 1;
-                        const resultado = valoremreal / valorcambio;
-                        document.getElementById("resultado").textContent = resultado.toFixed(2);
-                    }
-
-                    function alterarValor() {
-                        const campoNumero = document.getElementById("valor");
-                        campoNumero.value = document.getElementById("resultado").textContent;
-                    }
-
-                </script>
-            </div>
-        </div>
-
     </div>
+
+    <h5 class="text-center mb-4">Verificar câmbio</h5>
+    <div class="card mx-auto" style="max-width: 400px">
+        <div class="card-body">
+            <h6>Conversão</h6>
+            <label for="valoremreal" class="form-label">Valor em real</label>
+            <input class="form-control" type="number" id="valoremreal" placeholder="Digite o valor em real para converter" oninput="converterCambio()" />
+            <label for="valorcambio" class="form-label">Valor do câmbio atual</label>
+            <input  class="form-control" readonly type="number" id="valorcambio" placeholder="1 CHF = R$6.59" oninput="converterCambio()" th:value="${valorcambio}" />
+            <p><b>Valor convertido: <span id="resultado">0</span> <span> CHF</span></b></p>
+            <button type="button" class="btn btn-primary" onclick="alterarValor()" value="Inserir valor">Altera o valor</button>
+
+            <script>
+                function converterCambio() {
+                    const valoremreal = parseFloat(document.getElementById("valoremreal").value) || 0;
+                    const valorcambio = parseFloat(document.getElementById("valorcambio").value) || 1;
+                    const resultado = valoremreal / valorcambio;
+                    document.getElementById("resultado").textContent = resultado.toFixed(2);
+                }
+
+                function alterarValor() {
+                    const campoNumero = document.getElementById("valor");
+                    campoNumero.value = document.getElementById("resultado").textContent;
+                }
+
+            </script>
+        </div>
+    </div>
+
+</div>
 
 
 

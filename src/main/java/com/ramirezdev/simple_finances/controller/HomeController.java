@@ -3,6 +3,8 @@ package com.ramirezdev.simple_finances.controller;
 import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.domain.user.UserDTO;
 import com.ramirezdev.simple_finances.domain.user.UserReposiroty;
+import com.ramirezdev.simple_finances.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 public class HomeController {
 
+    @Autowired
+    private UserService userService;
 
 
     @Autowired
@@ -24,7 +28,8 @@ public class HomeController {
 //    }
 
     @GetMapping
-    public String carregaHomePage() {
+    public String carregaHomePage(HttpSession session) {
+        System.out.println(session.getId());
         return ("home");
     }
 
@@ -37,5 +42,9 @@ public class HomeController {
         return "redirect:/users";
     }
 
+    @PostMapping("/login")
+    public String login(@RequestBody User user) {
+        return userService.verifyUser(user);
+    }
 
 }
