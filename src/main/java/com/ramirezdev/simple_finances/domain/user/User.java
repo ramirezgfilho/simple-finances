@@ -1,6 +1,11 @@
 package com.ramirezdev.simple_finances.domain.user;
 
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -28,6 +33,7 @@ public class User {
                 ", senha='" + senha + '\'' +
                 '}';
     }
+
 
     public User(String login, String senha) {
         this.login = login;
@@ -66,4 +72,6 @@ public class User {
         this.login = login;
         this.senha = senha;
     }
+
+
 }

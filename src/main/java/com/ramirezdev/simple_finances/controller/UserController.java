@@ -3,6 +3,7 @@ package com.ramirezdev.simple_finances.controller;
 import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.domain.user.UserDTO;
 import com.ramirezdev.simple_finances.domain.user.UserReposiroty;
+import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -16,6 +17,9 @@ public class UserController {
 
     @Autowired
     private UserReposiroty userReposiroty;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public String carregaUsuarios(Model model) {
@@ -32,7 +36,7 @@ public class UserController {
     @Transactional
     public String createUser(UserDTO dados) {
         var usuario = new User(dados);
-        userReposiroty.save(usuario);
+        userService.registerUser(usuario);
         return "redirect:/users";
     }
 
@@ -43,10 +47,10 @@ public class UserController {
 //    }
 
 
-    @DeleteMapping
     @Transactional
-    public String deletaFilme(Long id){
-        userReposiroty.deleteById(id);
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@RequestParam Long id){
+        userService.deleteUser(id);
         return "redirect:/users";
     }
 

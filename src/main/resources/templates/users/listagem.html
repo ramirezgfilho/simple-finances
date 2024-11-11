@@ -36,11 +36,7 @@
             <td th:text="${user.login}"></td>
             <td th:text="${user.senha}"></td>
             <td>
-              <form action="/users" method="post">
-                <input type="hidden" name="_method" value="delete">
-                <input type="hidden" name="id" th:value="${user.id}">
-                <input type="submit" value="Excluir">
-              </form>
+              <a th:href="@{/users/delete/id(id=${user.id})}" ><i class="bi bi-trash" style="color:red; decoration:none"></i></a>
             </td>
 
 
