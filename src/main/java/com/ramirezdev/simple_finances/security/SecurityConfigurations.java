@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -36,10 +35,7 @@ public class SecurityConfigurations {
 
 //    @Bean
 //    public UserDetailsService userDetailsService() {
-//
-//        UserDetails user1 = User.withDefaultPasswordEncoder().username("kiran").password("k@123").roles("USER").build();
-//        UserDetails user2 = User.withDefaultPasswordEncoder().username("kirani").password("k@123").roles("ADMIN").build();
-//        return new InMemoryUserDetailsManager(user1,user2);
+//        UserDetails userDetails = User.builder()
 //    }
 
 

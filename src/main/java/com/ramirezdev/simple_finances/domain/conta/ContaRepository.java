@@ -1,5 +1,6 @@
 package com.ramirezdev.simple_finances.domain.conta;
 
+import com.ramirezdev.simple_finances.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -12,7 +13,9 @@ public interface ContaRepository extends JpaRepository<Conta, Long> {
 
     List<Conta> findAllByOrderByMes();
     List<Conta> findAllByMes(Integer mes);
+    List<Conta> findAllByAnoAndMesAndUser(Integer ano, Integer mes, User user);
     List<Conta> findAllByAnoAndMes(Integer ano, Integer mes);
+
 
     //Várias formas de fazer a mesma coisa, aqui com o sql puro
     @Query(

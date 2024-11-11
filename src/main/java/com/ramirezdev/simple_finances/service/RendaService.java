@@ -23,8 +23,8 @@ public class RendaService {
     }
 
 
-    public void insereRenda(RendaDTO rendaDTO) {
-        RendaDTO rendaDTOn = new RendaDTO(rendaDTO.descricao(), rendaDTO.valor(), userService.findUser(1L), rendaDTO.mes(), rendaDTO.ano());
+    public void insereRenda(RendaDTO rendaDTO, String login) {
+        RendaDTO rendaDTOn = new RendaDTO(rendaDTO.descricao(), rendaDTO.valor(), userService.findByLogin(login), rendaDTO.mes(), rendaDTO.ano());
         Renda renda = new Renda(rendaDTOn);
         rendaRepository.save(renda);
     }
@@ -33,6 +33,11 @@ public class RendaService {
     public List<Renda> findRendaByAnoAndMes(Integer ano, Integer mes) {
         return rendaRepository.findAllByAnoAndMes(ano, mes);
     }
+
+    public List<Renda> findRendaByAnoAndMesAndUser(Integer ano, Integer mes, String user) {
+        return rendaRepository.findAllByAnoAndMesAndUser(ano, mes, userService.findByLogin(user));
+    }
+
 
 
 }

@@ -2,6 +2,7 @@ package com.ramirezdev.simple_finances.controller;
 
 import com.ramirezdev.simple_finances.domain.renda.RendaDTO;
 import com.ramirezdev.simple_finances.service.RendaService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,16 +29,9 @@ public class RendaController {
     }
 
     @PostMapping("/insere")
-    private String insereRenda(RendaDTO rendaDTO) {
-        rendaService.insereRenda(rendaDTO);
+    private String insereRenda(RendaDTO rendaDTO, HttpServletRequest httpServletRequest) {
+        rendaService.insereRenda(rendaDTO, httpServletRequest.getUserPrincipal().getName());
         return "redirect:/contas";
     }
-
-//    @PostMapping("/insereConta")
-//    public String createConta(ContaDTO dados) {
-//        contaService.cadastraConta(dados);
-//        return "redirect:/contas";
-//    }
-
 
 }

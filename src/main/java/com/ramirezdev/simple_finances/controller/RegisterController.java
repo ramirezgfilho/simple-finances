@@ -5,12 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("register")
+@RequestMapping("/register")
 public class RegisterController {
 
+
     @GetMapping
-    public String registerPage() {
+    public String registro(){
         return "register/register";
     }
+
 
 }

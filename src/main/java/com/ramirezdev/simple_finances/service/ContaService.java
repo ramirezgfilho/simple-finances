@@ -4,12 +4,14 @@ import com.ramirezdev.simple_finances.domain.conta.Conta;
 import com.ramirezdev.simple_finances.domain.conta.ContaDTO;
 import com.ramirezdev.simple_finances.domain.conta.ContaDTOPagar;
 import com.ramirezdev.simple_finances.domain.conta.ContaRepository;
+import com.ramirezdev.simple_finances.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ContaService {
@@ -38,8 +40,8 @@ public class ContaService {
     }
 
 
-    public void cadastraConta(ContaDTO dados) {
-        ContaDTO contaDTO = new ContaDTO(dados.descricao(), dados.valor(), Date.valueOf(LocalDate.now()), userService.findUser(1L), dados.mes(), dados.ano(), dados.pago());
+    public void cadastraConta(ContaDTO dados, String username) {
+        ContaDTO contaDTO = new ContaDTO(dados.descricao(), dados.valor(), Date.valueOf(LocalDate.now()), userService.findByLogin(username), dados.mes(), dados.ano(), dados.pago());
         var conta = new Conta(contaDTO);
         contaRepository.save(conta);
     }
@@ -65,5 +67,9 @@ public class ContaService {
         var conta = contaRepository.getReferenceById(id);
         conta.atualizaConta(contaDTO);
         contaRepository.save(conta);
+    }
+
+    public List<Conta> findAllByAnoAndMesAndUser(Integer ano, Integer mes, String user) {
+        return contaRepository.findAllByAnoAndMesAndUser(ano, mes, userService.findByLogin(user));
     }
 }

@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Table(name = "contas")
 @Entity(name = "Contas")
-public class Conta {
+public class    Conta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

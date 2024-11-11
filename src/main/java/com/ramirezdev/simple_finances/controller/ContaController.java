@@ -5,6 +5,8 @@ import com.ramirezdev.simple_finances.domain.conta.ContaRepository;
 import com.ramirezdev.simple_finances.service.ApiService;
 import com.ramirezdev.simple_finances.service.ContaService;
 import com.ramirezdev.simple_finances.service.RendaService;
+import com.ramirezdev.simple_finances.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +23,13 @@ public class ContaController {
     private ContaService contaService;
 
     @Autowired
-    private ContaRepository repository;
-
-    @Autowired
     private RendaService rendaService;
 
     @Autowired
     private ApiService apiService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/all")
     private String carregaPaginaContas(Model model) {
@@ -36,16 +38,15 @@ public class ContaController {
     }
 
     @GetMapping()
-    private String carregaContasMesAtual(Model model) {
+    private String carregaContasMesAtual(Model model, HttpServletRequest httpServletRequest) {
         //Carrega as contas do mês atual e soma o valor total, passando o valor para a tela
-        var contas = repository.findAllByAnoAndMes((LocalDate.now().getYear()), (LocalDate.now().getMonthValue()));
+        var contas = contaService.findAllByAnoAndMesAndUser((LocalDate.now().getYear()), (LocalDate.now().getMonthValue()), httpServletRequest.getUserPrincipal().getName());
         Double sum = contas.stream().mapToDouble(c -> c.getValor()).sum();
-
         //carrega as rendas e soma os valores das rendas do mês para passar para a tela
-        var listarenda = rendaService.findRendaByAnoAndMes((LocalDate.now().getYear()), (LocalDate.now().getMonthValue()));
+        var listarenda = rendaService.findRendaByAnoAndMesAndUser((LocalDate.now().getYear()), (LocalDate.now().getMonthValue()), httpServletRequest.getUserPrincipal().getName());
         Double sumrenda = listarenda.stream().mapToDouble(c -> c.getValor()).sum();
         Double restantemes = (sumrenda - sum );
-
+        //Adciona atributos para a tela.
         model.addAttribute("total", sum);
         model.addAttribute("lista", contas);
         model.addAttribute("listarendas" , listarenda);
@@ -55,12 +56,11 @@ public class ContaController {
     }
 
     @GetMapping("/find/{ano}/{mes}")
-    private String carregaContaMesSelecionado(@RequestParam Integer mes, @RequestParam Integer ano, Model model) {
-        var contas = repository.findAllByAnoAndMes(ano, mes);
+    private String carregaContaMesSelecionado(@RequestParam Integer mes, @RequestParam Integer ano, Model model, HttpServletRequest httpServletRequest) {
+        var contas = contaService.findAllByAnoAndMesAndUser(ano, mes, httpServletRequest.getUserPrincipal().getName());
         Double sum = contas.stream().mapToDouble(c -> c.getValor()).sum();
-        var listarenda = rendaService.findRendaByAnoAndMes(ano,mes);
+        var listarenda = rendaService.findRendaByAnoAndMesAndUser(ano,mes, httpServletRequest.getUserPrincipal().getName());
         Double sumrenda = listarenda.stream().mapToDouble(c -> c.getValor()).sum();
-
         model.addAttribute("total", sum);
         model.addAttribute("lista", contas);
         model.addAttribute("listarendas" , listarenda);
@@ -89,8 +89,8 @@ public class ContaController {
     }
 
     @PostMapping("/insereConta")
-    public String createConta(ContaDTO dados) {
-        contaService.cadastraConta(dados);
+    public String createConta(ContaDTO dados, HttpServletRequest httpServletRequest) {
+        contaService.cadastraConta(dados, httpServletRequest.getUserPrincipal().getName());
         return "redirect:/contas/cadastro";
     }
 

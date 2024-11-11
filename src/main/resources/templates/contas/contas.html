@@ -24,6 +24,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
+                        <th scope="col">UserID</th>
                         <th scope="col">Descrição</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Mês</th>
@@ -35,6 +36,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="conta : ${lista}">
+                        <td th:text="${conta.user.id}"></td>
                         <td th:text="${conta.descricao}"></td>
                         <td th:text="${conta.valor}"></td>
                         <td th:text="${conta.mes}"></td>

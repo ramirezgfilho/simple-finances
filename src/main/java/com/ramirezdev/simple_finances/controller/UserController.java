@@ -2,11 +2,9 @@ package com.ramirezdev.simple_finances.controller;
 
 import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.domain.user.UserDTO;
-import com.ramirezdev.simple_finances.domain.user.UserReposiroty;
 import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @Autowired
-    private UserReposiroty userReposiroty;
-
-    @Autowired
     private UserService userService;
 
     @GetMapping
     public String carregaUsuarios(Model model) {
-        model.addAttribute("lista", userReposiroty.findAll());
+        model.addAttribute("lista", userService.findAll());
         return "users/listagem";
     }
 
@@ -53,8 +48,4 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
-
-
-
-
 }
