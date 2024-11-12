@@ -4,16 +4,13 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link rel="icon" type="image/png" sizes="32x32" th:href="@{favicon-32x32x.png}">
-
-
     </head>
     <body>
         <header th:fragment="navbar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <!-- Título ou Logo da Aplicação -->
-                    <a class="navbar-brand" href="#" th:href="@{/}">Simple Finances</a>
+                    <a class="navbar-brand" href="#" th:href="@{/dashboard}">Simple Finances</a>
                     
                     <!-- Botão para Colapsar a Navbar em Telas Pequenas -->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,7 +21,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link" th:href="@{/}">Dashboard</a>
+                                <a class="nav-link" th:href="@{/dashboard}">Dashboard</a>
                             </li>
 
                             <li class="nav-item">
@@ -85,6 +82,8 @@
                                 </div>
                             </div>
                         </form>
+
+                        <a type="button" class="btn btn-danger" th:href="@{/logout}">Logout</a>
                 
                 <!-- Saudação e Botão de Logout -->
                 <!-- <span class="navbar-text me-3">

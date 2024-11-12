@@ -30,8 +30,7 @@ public class UserController {
     @PostMapping
     @Transactional
     public String createUser(UserDTO dados) {
-        var usuario = new User(dados);
-        userService.registerUser(usuario);
+        userService.registerUser(dados);
         return "redirect:/users";
     }
 

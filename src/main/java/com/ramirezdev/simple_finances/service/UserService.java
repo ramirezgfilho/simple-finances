@@ -1,6 +1,7 @@
 package com.ramirezdev.simple_finances.service;
 
 import com.ramirezdev.simple_finances.domain.user.User;
+import com.ramirezdev.simple_finances.domain.user.UserDTO;
 import com.ramirezdev.simple_finances.domain.user.UserReposiroty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,9 +30,16 @@ public class UserService {
         return userReposiroty.getReferenceById(id);
     }
 
-    public void registerUser(User usuario) {
-        usuario.setSenha(encoder.encode(usuario.getSenha()));
-        userReposiroty.save(usuario);
+    public void registerUser(UserDTO userDTO) {
+        var usuario = new User(userDTO);
+        if(userReposiroty.findByLogin(usuario.getLogin()) != null) {
+            System.out.println("Já existe usuário com este e-mail");
+            return;
+        } else {
+            System.out.println("Usuário cadastrado");
+            usuario.setSenha(encoder.encode(usuario.getSenha()));
+            userReposiroty.save(usuario);
+        }
     }
 
 
