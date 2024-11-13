@@ -30,7 +30,7 @@ public class HomeController implements WebMvcConfigurer {
 
     @GetMapping()
     public String carregaHome() {
-        return "home";
+        return "dashboard";
     }
 
     @GetMapping("/login")

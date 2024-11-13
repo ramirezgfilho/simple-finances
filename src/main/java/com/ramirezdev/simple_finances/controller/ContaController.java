@@ -7,9 +7,12 @@ import com.ramirezdev.simple_finances.service.ContaService;
 import com.ramirezdev.simple_finances.service.RendaService;
 import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -88,10 +91,15 @@ public class ContaController {
         return "redirect:/contas";
     }
 
-    @PostMapping("/insereConta")
-    public String createConta(ContaDTO dados, HttpServletRequest httpServletRequest) {
-        contaService.cadastraConta(dados, httpServletRequest.getUserPrincipal().getName());
-        return "redirect:/contas/cadastro";
+    @PostMapping("/cadastro")
+    public String createConta(@Valid ContaDTO contaDTO, HttpServletRequest httpServletRequest, BindingResult result, Model model) {
+        if(result.hasErrors()){
+
+            return "redirect:/contas/cadastro";
+        } else {
+            contaService.cadastraConta(contaDTO, httpServletRequest.getUserPrincipal().getName());
+            return "redirect:/contas/cadastro";
+        }
     }
 
     @GetMapping("/altera/{id}")

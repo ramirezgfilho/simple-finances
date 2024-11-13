@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="col-auto">
-                            <label class="form-label" for="username">Usuário/E-mail</label>
+                            <label class="form-label" for="username">E-mail</label>
                             <input class="form-control" type="text" id="username" name="username"/>
                         </div>
 
@@ -43,6 +43,10 @@
 
                         <div class="form-actions col-auto">
                             <a type="button" th:href="@{/register}" class="btn btn-info" style="margin-top: 10px;">Criar conta</a>
+                        </div>
+
+                        <div class="form-actions col-auto">
+                            <a type="button" th:href="@{/register/recuperar-senha}" class="btn btn-warning" style="margin-top: 10px;">Esqueci a senha</a>
                         </div>
 
                     </fieldset>

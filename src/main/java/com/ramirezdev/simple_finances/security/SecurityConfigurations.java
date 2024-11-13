@@ -26,7 +26,7 @@ public class SecurityConfigurations {
 
         http.csrf(customizer -> customizer.disable());
         http.authorizeHttpRequests(request -> request.
-                requestMatchers("register", "login", "static/images").permitAll().
+                requestMatchers("login", "register/recuperar-senha", "register").permitAll().
                 anyRequest().authenticated());
         http.formLogin(form -> form.loginPage("/login"));
         http.formLogin(form -> form.defaultSuccessUrl("/dashboard"));

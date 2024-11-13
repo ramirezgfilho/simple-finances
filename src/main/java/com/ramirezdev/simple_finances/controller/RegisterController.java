@@ -6,9 +6,11 @@ import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/register")
@@ -28,6 +30,31 @@ public class RegisterController {
         userService.registerUser(dados);
         return "redirect:/login";
     }
+
+    @GetMapping("/recuperar-senha")
+    public String recuperarSenha(@RequestParam (required = false)String email, Model model) {
+        return "register/recuperarsenha";
+    }
+
+    @PostMapping("recuperar-senha")
+    public String recuperaASenha(@RequestParam(required = false) String email, Model model) {
+
+        if (email != null) {
+            String mensagem = "Se existir algum usuário com o e-mail: " + email + " uma nova senha será enviada por e-mail";
+            System.out.println(email);
+            model.addAttribute("mensagem", mensagem);
+            return "register/recuperarsenha";
+        } else {
+            String mensagem = null;
+            model.addAttribute("mensagem", mensagem);
+            return "register/recuperarsenha";
+        }
+
+
+
+    }
+
+
 
 
 

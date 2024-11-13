@@ -17,14 +17,18 @@
     <h5 class="text-center mb-4">Cadastro conta</h5>
     <div class="card mx-auto" style="max-width: 400px">
         <div class="card-body">
-            <form method="post" action="/contas/insereConta" th:object="${contaDTO}">
-                <input
-                        type="hidden"
-                        name="_method"
-                        value="put"
-                        th:if="${conta != null}"
-                />
-                <input type="hidden" name="id" th:value="${conta?.id}" />
+            <form method="post" action="/contas/cadastro" th:object="${contaDTO}">
+                 <input
+                            type="hidden"
+                            name="_method"
+                            value="put"
+                            th:if="${conta != null}"
+                    />
+                    <input type="hidden" name="id" th:value="${conta?.id}" />
+
+                <div th:if="${success}">
+                    Conta cadastrada com sucesso!
+                </div>
 
                 <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição</label>
@@ -35,6 +39,7 @@
                             th:value="${conta?.descricao}"
                             class="form-control"
                             required
+
                     />
                 </div>
                 <div class="mb-3">
@@ -50,18 +55,7 @@
                             step="any"
                     />
                 </div>
-                <!--
-                        <div class="mb-3">
-                            <label for="vencimento" class="form-label">Data de Inserção</label>
-                            <input
-                                    type="date"
-                                    id="vencimento"
-                                    name="vencimento"
-                                    th:value="${conta?.vencimento}"
-                                    class="form-control"
-                                    required
-                            />
-                          </div> -->
+
 
                 <div class="mb-3">
                     <label for="mes" class="form-label">Mês</label>
@@ -71,7 +65,7 @@
                             th:value="${conta?.mes}"
                             class="form-select"
                             required
-                            >
+                    >
 
                         <option th:value="1">Janeiro</option>
                         <option th:value="2">Fevereiro</option>

@@ -3,6 +3,7 @@ package com.ramirezdev.simple_finances.domain.conta;
 
 import com.ramirezdev.simple_finances.domain.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
 import java.sql.Date;
@@ -15,17 +16,22 @@ public class    Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "descricao")
     private String descricao;
+
     @Column(name = "valor")
     private Double valor;
+
     @Column(name = "dataalterada")
     private Date dataalterada;
 
     @Column(name = "mes")
     private Integer mes;
+
     @Column (name = "ano")
     private Integer ano;
+
     @Column (name = "pago")
     private Boolean pago;
 

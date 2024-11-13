@@ -18,7 +18,7 @@ public class User {
 
     @Column(name = "login")
     private String login;
-    @Column(name = "senha")
+    @Column(name = "senha", unique = true, nullable = false)
     private String senha;
 
     public User(UserDTO dados) {
