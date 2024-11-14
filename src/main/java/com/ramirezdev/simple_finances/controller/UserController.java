@@ -3,6 +3,7 @@ package com.ramirezdev.simple_finances.controller;
 import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.domain.user.UserDTO;
 import com.ramirezdev.simple_finances.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,8 +51,23 @@ public class UserController {
 
 
     @GetMapping("/altera-senha")
-    public String alteraSenha(@RequestParam (required = false)String email, Model model) {
+    public String alteraSenha(@RequestParam (required = false)String senhaatual,String novasenha, Model model) {
         return"users/alterasenha";
+    }
+
+    @PostMapping("/altera-senha")
+    public String salvaSenha(@RequestParam (required = false)String senhaatual,String novasenha, Model model, HttpServletRequest httpServletRequest) {
+
+        if (userService.alteraSenha(senhaatual, novasenha, httpServletRequest.getUserPrincipal().getName())) {
+            String message = "Senha alterada com sucesso!";
+            model.addAttribute("mensagem", message);
+            return "users/alterasenha";
+        } else {
+            String message = null;
+            model.addAttribute("mensagem", message);
+            return "users/alterasenha";
+        }
+
     }
 
 

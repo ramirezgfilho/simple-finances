@@ -65,4 +65,16 @@ public class UserService {
     public List<User> findAll() {
         return userReposiroty.findAll();
     }
+
+    public boolean alteraSenha(String senhaatual, String novasenha, String name) {
+        try {
+            User user = userReposiroty.findByLogin(name);
+            user.setSenha(encoder.encode(novasenha));
+            userReposiroty.save(user);
+            return true;
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
 }
