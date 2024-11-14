@@ -47,4 +47,14 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/users";
     }
+
+
+    @GetMapping("/altera-senha")
+    public String alteraSenha(@RequestParam (required = false)String email, Model model) {
+        return"users/alterasenha";
+    }
+
+
+
+
 }

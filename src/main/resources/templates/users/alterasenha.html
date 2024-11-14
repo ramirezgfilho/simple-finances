@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{favicon-32x32x.png}">
+  <title>ALterar senha</title>
+
+</head>
+<body>
+<div class="container mt-5">
+  <div class="card mx-auto" style="max-width: 400px">
+    <div class="card-body">
+      <form method="post" action="#" th:action="@{/users/altera-senha}" th:objetc="${userDTO}" class="needs-validation">
+        <input
+                type="hidden"
+                name="_method"
+                value="put"
+                th:if="${user != null}"
+        />
+        <input type="hidden" name="id" th:value="${user?.id}" />
+
+
+        <fieldset>
+          <legend class="form-label">Registro de usuário</legend>
+
+          <div class="mb-3">
+            <label for="login" class="form-label">E-mail</label>
+            <input
+                    type="email"
+                    id="login"
+                    name="login"
+                    th:value="${login}"
+                    class="form-control"
+                    required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input
+                    type="password"
+                    id="senha"
+                    name="senha"
+                    th:value="${user?.senha}"
+                    class="form-control"
+                    required
+                    minlength="8"
+            />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <a th:href="@{/login}" class="btn btn-secondary">Cancelar</a>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

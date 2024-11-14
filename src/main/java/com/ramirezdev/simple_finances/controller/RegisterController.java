@@ -1,7 +1,7 @@
 package com.ramirezdev.simple_finances.controller;
 
-import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.domain.user.UserDTO;
+import com.ramirezdev.simple_finances.service.RegisterService;
 import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,10 @@ public class RegisterController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RegisterService registerService;
+
 
     @GetMapping
     public String registro(){
@@ -43,16 +47,15 @@ public class RegisterController {
             String mensagem = "Se existir algum usuário com o e-mail: " + email + " uma nova senha será enviada por e-mail";
             System.out.println(email);
             model.addAttribute("mensagem", mensagem);
+            registerService.handlePasswordRecovery(email);
             return "register/recuperarsenha";
         } else {
             String mensagem = null;
             model.addAttribute("mensagem", mensagem);
             return "register/recuperarsenha";
         }
-
-
-
     }
+
 
 
 
