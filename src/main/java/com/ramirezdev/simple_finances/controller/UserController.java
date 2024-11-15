@@ -57,13 +57,17 @@ public class UserController {
 
     @PostMapping("/altera-senha")
     public String salvaSenha(@RequestParam (required = false)String senhaatual,String novasenha, Model model, HttpServletRequest httpServletRequest) {
-
+        boolean alterada;
         if (userService.alteraSenha(senhaatual, novasenha, httpServletRequest.getUserPrincipal().getName())) {
             String message = "Senha alterada com sucesso!";
+            alterada = true;
             model.addAttribute("mensagem", message);
+            model.addAttribute("alterada", alterada);
             return "users/alterasenha";
         } else {
-            String message = null;
+            String message = "Senha não alterada, a senha atual está incorreta.";
+            alterada = false;
+            model.addAttribute("alterada", alterada);
             model.addAttribute("mensagem", message);
             return "users/alterasenha";
         }

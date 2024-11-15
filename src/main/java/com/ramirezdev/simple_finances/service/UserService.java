@@ -67,14 +67,16 @@ public class UserService {
     }
 
     public boolean alteraSenha(String senhaatual, String novasenha, String name) {
-        try {
-            User user = userReposiroty.findByLogin(name);
-            user.setSenha(encoder.encode(novasenha));
-            userReposiroty.save(user);
+        User userSenha = userReposiroty.findByLogin(name);
+        if (encoder.matches(senhaatual, userSenha.getSenha())){
+            userSenha.setSenha(encoder.encode(novasenha));
+            userReposiroty.save(userSenha);
+            System.out.println("Senha alterada com sucesso.");
             return true;
-        } catch (Exception e){
-            System.out.println(e.getMessage());
+        } else {
+            System.out.println("Senha não alterada.");
             return false;
         }
+
     }
 }

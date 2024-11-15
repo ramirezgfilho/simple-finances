@@ -24,7 +24,6 @@ public class RegisterService {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
 
-
     public void handlePasswordRecovery(String email) {
 
         User user = userService.findByLogin(email);

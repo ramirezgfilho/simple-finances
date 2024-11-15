@@ -16,7 +16,11 @@
         <fieldset>
           <legend class="form-label">Alteração de senha</legend>
 
-          <div th:if="${mensagem != null}" class="alert alert-success">
+          <div th:if="${alterada == true}" class="alert alert-success">
+            <span th:text="${mensagem}"></span>
+          </div>
+
+          <div th:if="${alterada == false}" class="alert alert-danger">
             <span th:text="${mensagem}"></span>
           </div>
 
