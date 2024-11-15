@@ -4,6 +4,7 @@ import com.ramirezdev.simple_finances.domain.user.User;
 import com.ramirezdev.simple_finances.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,10 @@ public class HomeController implements WebMvcConfigurer {
     }
 
     @GetMapping()
-    public String carregaHome() {
-        return "dashboard";
+    public String carregaHome(HttpSession session, HttpServletRequest httpServletRequest, Model model) {
+        Principal principal = httpServletRequest.getUserPrincipal();
+        model.addAttribute("login", principal.getName());
+        return ("dashboard");
     }
 
     @GetMapping("/login")
