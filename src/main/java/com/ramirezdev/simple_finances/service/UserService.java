@@ -71,10 +71,8 @@ public class UserService {
         if (encoder.matches(senhaatual, userSenha.getSenha())){
             userSenha.setSenha(encoder.encode(novasenha));
             userReposiroty.save(userSenha);
-            System.out.println("Senha alterada com sucesso.");
             return true;
         } else {
-            System.out.println("Senha não alterada.");
             return false;
         }
 

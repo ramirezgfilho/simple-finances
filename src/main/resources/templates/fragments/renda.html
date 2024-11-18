@@ -12,53 +12,47 @@
 
 
 <div class="container mt-5">
-  <h6 class="text-center mb-4" >Rendas do mês atual</h6>
   <div class="card">
     <div class="card-header">
-      <div class="d-flex justify-content-between align-items-center flex">
-        <div class="align-content-center">
-          <h5 class="mb-0">Inserir renda</h5>
-        </div>
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Rendas do mês atual</h5>
         <form method="post" action="/renda/insere" th:object="${rendaDTO}">
           <div class="row">
-
-
-
-          <div class="col-auto">
-            <label for="descricao" class="form-label">Descrição</label>
-            <input type="text" id="descricao" name="descricao" th:value="${renda?.descricao}" class="form-control" required/>
-          </div>
-          <div class="col-auto">
-            <label for="valor" class="form-label">Valor</label>
-            <input type="text" id="valor" name="valor" th:value="${renda?.valor}" class="form-control" required/>
-          </div>
-          <div class="col-auto">
-            <label for="mes" class="form-label">Mês</label>
-            <select id="mes" name="mes" th:value="${renda?.mes}" class="form-select" required>
-              <option th:value="1">Janeiro</option>
-              <option th:value="2">Fevereiro</option>
-              <option th:value="3">Março</option>
-              <option th:value="4">Abril</option>
-              <option th:value="5">Maio</option>
-              <option th:value="6">Junho</option>
-              <option th:value="7">Julho</option>
-              <option th:value="8">Agosto</option>
-              <option th:value="9">Setembro</option>
-              <option th:value="10">Outubro</option>
-              <option th:value="11">Novembro</option>
-              <option th:value="12">Dezembro</option>
-            </select>
-          </div>
-          <div class="col-auto">
-            <label for="ano" class="form-label">Ano</label>
-            <select id="ano" name="ano" th:value="${renda?.ano}" class="form-select" required>
-              <option th:value="2024">2024</option>
-              <option th:value="2025">2025</option>
-            </select>
-          </div>
-          <div class="col-auto align-content-end">
-            <button type="submit" class="btn btn-primary">Adcionar</button>
-          </div>
+            <div class="col-auto">
+              <label for="descricao" class="form-label">Descrição</label>
+              <input type="text" id="descricao" name="descricao" th:value="${renda?.descricao}" class="form-control" required/>
+            </div>
+            <div class="col-auto">
+              <label for="valor" class="form-label">Valor</label>
+              <input type="text" id="valor" name="valor" th:value="${renda?.valor}" class="form-control" required/>
+            </div>
+            <div class="col-auto">
+              <label for="mes" class="form-label">Mês</label>
+              <select id="mes" name="mes" th:value="${renda?.mes}" class="form-select" required>
+                <option th:value="1">Janeiro</option>
+                <option th:value="2">Fevereiro</option>
+                <option th:value="3">Março</option>
+                <option th:value="4">Abril</option>
+                <option th:value="5">Maio</option>
+                <option th:value="6">Junho</option>
+                <option th:value="7">Julho</option>
+                <option th:value="8">Agosto</option>
+                <option th:value="9">Setembro</option>
+                <option th:value="10">Outubro</option>
+                <option th:value="11">Novembro</option>
+                <option th:value="12">Dezembro</option>
+              </select>
+            </div>
+            <div class="col-auto">
+              <label for="ano" class="form-label">Ano</label>
+              <select id="ano" name="ano" th:value="${renda?.ano}" class="form-select" required>
+                <option th:value="2024">2024</option>
+                <option th:value="2025">2025</option>
+              </select>
+            </div>
+            <div class="col-auto align-content-end">
+              <button type="submit" class="btn btn-primary">Inserir renda</button>
+            </div>
           </div>
         </form>
       </div>
@@ -97,8 +91,6 @@
             <th>Restante mês: </th>
             <td th:text="${restantemes}"></td>
           </tr>
-
-
           </tfoot>
         </table>
       </div>

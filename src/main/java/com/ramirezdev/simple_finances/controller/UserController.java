@@ -17,23 +17,23 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public String carregaUsuarios(Model model) {
-        model.addAttribute("lista", userService.findAll());
-        return "users/listagem";
-    }
+//    @GetMapping
+//    public String carregaUsuarios(Model model) {
+//        model.addAttribute("lista", userService.findAll());
+//        return "users/listagem";
+//    }
 
     @GetMapping("/cadastro")
     public String cadastraUsuario(){
         return "users/cadastro";
     }
 
-    @PostMapping
-    @Transactional
-    public String createUser(UserDTO dados) {
-        userService.registerUser(dados);
-        return "redirect:/users";
-    }
+//    @PostMapping
+//    @Transactional
+//    public String createUser(UserDTO dados) {
+//        userService.registerUser(dados);
+//        return "redirect:/users";
+//    }
 
 //    @GetMapping("/{id}")
 //    public String getPerfilUsuario(@PathVariable Integer id, Model model) {
@@ -41,13 +41,13 @@ public class UserController {
 //        return "users/profile";
 //    }
 
-
-    @Transactional
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@RequestParam Long id){
-        userService.deleteUser(id);
-        return "redirect:/users";
-    }
+//
+//    @Transactional
+//    @GetMapping("/delete/{id}")
+//    public String deleteUser(@RequestParam Long id){
+//        userService.deleteUser(id);
+//        return "redirect:/users";
+//    }
 
 
     @GetMapping("/altera-senha")

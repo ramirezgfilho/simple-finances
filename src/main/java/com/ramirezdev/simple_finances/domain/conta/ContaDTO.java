@@ -7,23 +7,18 @@ import java.sql.Date;
 
 public record ContaDTO(
 
-        @NotBlank(message = "Descrição não pode estar vazio.")
         String descricao,
 
-        @NotBlank
         Double valor,
 
         Date dataalterada,
 
         User user,
 
-        @NotBlank
         Integer mes,
 
-        @NotBlank
         Integer ano,
 
-        @NotBlank
         Boolean pago
 ) {
 }

@@ -7,7 +7,7 @@
     </head>
     <body>
         <header th:fragment="navbar">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" >
                 <div class="container-fluid">
                     <!-- Título ou Logo da Aplicação -->
                     <a class="navbar-brand" href="#" th:href="@{/dashboard}">Simple Finances</a>
@@ -28,68 +28,73 @@
                                 <a class="nav-link" th:href="@{/contas}">Contas do mês</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" th:href="@{/users}">Lista de Usuário</a>
+                            <li class="nav-item nav-link">
+                                Buscar contas por mês:
+                            </li>
+
+                            <li>
+
+                                <form method="get" th:action="@{/contas/find/ano/mes}" class="d-flex">
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <select
+                                                    id="mes"
+                                                    th:name="mes"
+                                                    th:value="${mes}"
+                                                    class="form-control"
+                                                    required >
+
+                                                <option th:value="1">Janeiro</option>
+                                                <option th:value="2">Fevereiro</option>
+                                                <option th:value="3">Março</option>
+                                                <option th:value="4">Abril</option>
+                                                <option th:value="5">Maio</option>
+                                                <option th:value="6">Junho</option>
+                                                <option th:value="7">Julho</option>
+                                                <option th:value="8">Agosto</option>
+                                                <option th:value="9">Setembro</option>
+                                                <option th:value="10">Outubro</option>
+                                                <option th:value="11">Novembro</option>
+                                                <option th:value="12">Dezembro</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col">
+                                            <select
+                                                    type="number"
+                                                    id="ano"
+                                                    th:name="ano"
+                                                    th:value="${ano}"
+                                                    class="form-control"
+                                                    required >
+
+                                                <option th:value="2024">2024</option>
+                                                <option th:value="2025">2025</option>
+                                                <option th:value="2025">2026</option>
+                                                <option th:value="2025">2027</option>
+                                                <option th:value="2025">2028</option>
+                                                <option th:value="2025">2029</option>
+                                                <option th:value="2025">2030</option>
+
+                                            </select>
+                                        </div>
+
+
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary">Ver</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </li>
 
                         </ul>
 
-                            
-                                <form method="get" th:action="@{/contas/find/ano/mes}" class="d-flex">
-                                    
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <select
-                                            id="mes"
-                                            th:name="mes"
-                                            th:value="${mes}"
-                                            class="form-control"
-                                            required >
-                                            
-                                            <option th:value="1">Janeiro</option>
-                                            <option th:value="2">Fevereiro</option>
-                                            <option th:value="3">Março</option>
-                                            <option th:value="4">Abril</option>
-                                            <option th:value="5">Maio</option>
-                                            <option th:value="6">Junho</option>
-                                            <option th:value="7">Julho</option>
-                                            <option th:value="8">Agosto</option>
-                                            <option th:value="9">Setembro</option>
-                                            <option th:value="10">Outubro</option>
-                                            <option th:value="11">Novembro</option>
-                                            <option th:value="12">Dezembro</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="col">
-                                        <select 
-                                        type="number"
-                                        id="ano"
-                                        th:name="ano"
-                                        th:value="${ano}"
-                                        class="form-control"
-                                        required >
-                                        
-                                        <option th:value="2024">2024</option>
-                                        <option th:value="2025">2025</option>
-                                        
-                                    </select>
-                                </div>
-                                
-                                
-                                <div class="col">
-                                    <button type="submit" class="btn btn-primary">Ver</button>
-                                </div>
-                            </div>
-                        </form>
+                        <a class="btn btn-danger" th:href="@{/logout}">Logout</a>
 
-                        <a type="button" class="btn btn-danger" th:href="@{/logout}">Logout</a>
-                
-                <!-- Saudação e Botão de Logout -->
-                <!-- <span class="navbar-text me-3">
-                    Bem-vindo(a), <strong th:text="${user}">Usuário</strong>
-                </span>
-                <a class="btn btn-outline-secondary" th:href="@{/logout}">Sair</a> -->
+                            
+
+
             </div>
         </div>
     </nav>

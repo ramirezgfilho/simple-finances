@@ -13,18 +13,24 @@
 
 <header th:insert="~{fragments/navbar.html}"> </header>
 
-<div class="container mt-5 col-6">
-    <h5 class="text-center mb-4">Cadastro conta</h5>
-    <div class="card mx-auto" style="max-width: 400px">
+<div class="container justify-content-between align-items-center">
+    <div class="row row-cols-2" style="padding: 30px;">
+
+    <div class="card col-md-12" style="max-width: 400px">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Cadastro de conta</h5>
+            </div>
+        </div>
         <div class="card-body">
             <form method="post" action="/contas/cadastro" th:object="${contaDTO}">
-                 <input
-                            type="hidden"
-                            name="_method"
-                            value="put"
-                            th:if="${conta != null}"
-                    />
-                    <input type="hidden" name="id" th:value="${conta?.id}" />
+                <input
+                        type="hidden"
+                        name="_method"
+                        value="put"
+                        th:if="${conta != null}"
+                />
+                <input type="hidden" name="id" th:value="${conta?.id}" />
 
                 <div th:if="${success}">
                     Conta cadastrada com sucesso!
@@ -121,9 +127,13 @@
             </form>
         </div>
     </div>
-
-    <h5 class="text-center mb-4">Verificar câmbio</h5>
-    <div class="card mx-auto" style="max-width: 400px">
+    <div class="col-md-2"></div>
+    <div class="card col-md-4" style="max-width: 400px">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Verificar câmbio</h5>
+            </div>
+        </div>
         <div class="card-body">
             <h6>Conversão</h6>
             <label for="valoremreal" class="form-label">Valor em real</label>
@@ -148,6 +158,8 @@
 
             </script>
         </div>
+    </div>
+
     </div>
 
 </div>

@@ -45,7 +45,6 @@ public class RegisterController {
 
         if (email != null) {
             String mensagem = "Se existir algum usuário com o e-mail: " + email + " uma nova senha será enviada por e-mail";
-            System.out.println(email);
             model.addAttribute("mensagem", mensagem);
             registerService.handlePasswordRecovery(email);
             return "register/recuperarsenha";

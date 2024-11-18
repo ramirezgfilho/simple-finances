@@ -44,4 +44,8 @@ public class Renda {
         this.ano = rendaDTO.ano();
     }
 
+
+    public Double getValor() {
+        return valor;
+    }
 }
