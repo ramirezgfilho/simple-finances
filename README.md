@@ -9,5 +9,6 @@ Technologies used:
 - Thymeleaf
 - HTML, CSS and Bootstrap
 - MYSQL
+- Deployment in Heroku
 
 The project is simple and needs a lot of improvements, but it was worth the learning.
