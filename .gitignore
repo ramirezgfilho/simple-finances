@@ -6,6 +6,8 @@ target/
 
 docker-compose.yml
 Dockerfile
+bfg.jar
+
 
 
 env.properties
